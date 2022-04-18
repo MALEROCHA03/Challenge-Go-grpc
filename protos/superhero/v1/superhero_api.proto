@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package superhero.v1;
+
+option go_package = "superhero/v1;superherov1";
+
+import "superhero/v1/superhero.proto";
+//import "superhero.proto";
+
+message Result {
+  bool success = 1;
+  string error = 2;
+}
+
+message Pagina {
+  int32 pagina = 1;
+}
+message ListaSuperhero{
+  repeated superhero.v1.Superhero superheros = 1;
+}
+
+service SuperheroApi {
+  rpc Crear(superhero.v1.Superhero) returns (Result);
+  rpc Actulizar(superhero.v1.Superhero) returns (Result);
+  rpc Lista(Pagina) returns (ListaSuperhero);
+}

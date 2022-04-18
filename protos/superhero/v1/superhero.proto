@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+
+//Manera en la que se llama el archivo para exportarlo debe coincidir con la carpeta
+package superhero.v1;
+
+
+//Se inicializò al principio para poder correr el porgrama
+option go_package = "superhero/v1;superherov1";
+
+//representa una enumeración
+//limita a que sea solo 1 o 0, poder sesgar posibilidades a lo que se necesita
+enum Genero {
+  mujer = 0;
+  hombre = 1;
+}
+
+enum Casa {
+  marvel = 0;
+  dc = 1;
+}
+//para la agrupaciòn de los datos
+message Atributos {
+  string debilidad =1;
+  int32 ataque = 2;
+  int32 vida = 3;
+  Genero genero = 4;
+}
+
+message Superhero {
+  string nombre = 1;
+  string habilidad = 2;
+  Atributos atributos = 3;
+  Casa casa = 4;
+}
+
+//protoc --proto_path=protos --go_out=pkg --go_opt=paths=source_relative --go-grpc_out=pkg --go-grpc_opt=paths=source_relative superhero/v1/superhero_api.proto
+
